@@ -3,7 +3,7 @@ import { Button, Table } from "react-bootstrap";
 import Editablefield from "./Editablefield";
 import { BiTrash } from "react-icons/bi";
 
-export default function InvoiceItem(props) {
+export default function Invoiceitem(props) {
   const [items, setItems] = useState(props.items);
   const [totalAmount, setTotalAmount] = useState(0);
 
