@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Form, Row, Col, Card, Button } from "react-bootstrap";
-import Invoiceitem from "./reusable/invoiceitem";
+import Invoiceitem from "./reusable/Invoiceitem";
 import InvoiceM from "./reusable/InvoiceM";
 import img1 from "/images/logo.png";
 
