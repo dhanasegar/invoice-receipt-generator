@@ -4,10 +4,10 @@ import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import img1 from "/images/logo.png";
 
-// Utility function to format the date as date/month/year
+// Utility function to format the date as dd/mm/yyyy
 const formatDate = (date) => {
-  const day = date.getDate();
-  const month = date.getMonth() + 1; // Months are zero-indexed
+  const day = String(date.getDate()).padStart(2, "0"); // Ensure two digits
+  const month = String(date.getMonth() + 1).padStart(2, "0"); // Ensure two digits
   const year = date.getFullYear();
   return `${day}/${month}/${year}`;
 };
