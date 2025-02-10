@@ -30,7 +30,7 @@ export default function InvoiceForm() {
       name: "name",
       description: "Course Description",
       fees: 0.0,
-      duration: "1_month",
+      duration: "1 Month",
     },
   ]);
 

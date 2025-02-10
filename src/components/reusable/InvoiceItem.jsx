@@ -70,7 +70,7 @@ function ItemRow(props) {
           cellData={{
             type: "text",
             name: "name",
-            placeholder: "Course Name",
+            placeholder: "1 Month",
             id: props.item.id,
             value: props.item.name,
           }}
@@ -94,7 +94,7 @@ function ItemRow(props) {
           cellData={{
             type: "select",
             name: "duration",
-            value: props.item.duration ?? "1_month",
+            value: props.item.duration ?? "1 Month",
             id: props.item.id,
             options: [
               { value: "3 Months", label: "3 Months" },

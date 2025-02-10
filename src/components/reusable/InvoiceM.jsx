@@ -4,6 +4,14 @@ import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 import img1 from "/images/logo.png";
 
+// Utility function to format the date as date/month/year
+const formatDate = (date) => {
+  const day = date.getDate();
+  const month = date.getMonth() + 1; // Months are zero-indexed
+  const year = date.getFullYear();
+  return `${day}/${month}/${year}`;
+};
+
 export default function InvoiceM(props) {
   // Function to generate the invoice PDF
   const generateInvoice = () => {
@@ -59,10 +67,7 @@ export default function InvoiceM(props) {
           </Col>
           <Col md={4}>
             <div className="fw-bold">Date of Issue:</div>
-            <div>
-              {new Date().getDate()}/{new Date().getMonth() + 1}/
-              {new Date().getFullYear()}
-            </div>
+            <div>{formatDate(new Date())}</div> {/* Use the formatDate function */}
           </Col>
         </Row>
 
