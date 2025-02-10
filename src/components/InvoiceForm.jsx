@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { Form, Row, Col, Card, Button } from "react-bootstrap";
 import Invoiceitem from "./reusable/InvoiceItem";
@@ -15,12 +14,12 @@ export default function InvoiceForm() {
     billToAddress: "",
     billToEmail: "",
     billFrom: "Brain Insight",
-    billFromEmail: "braininsight@gmail.com",
-    billFromAddress: "Vellore, Tamil Nadu",
+    billFromEmail: "hr@brain-insight.com",
+    billFromAddress:
+      "No.113,Vaibhav Co Opp Nagar,P-1,Opposite VIT(3rd Gate),Katpadi,Vellore-632014",
     notes: "",
     subTotal: "0.00",
   });
-
 
   const [total, setTotal] = useState(0.0);
   const [d, setd] = useState();
@@ -31,11 +30,9 @@ export default function InvoiceForm() {
       name: "name",
       description: "Course Description",
       fees: 0.0,
-      duration: "1_month", 
+      duration: "1_month",
     },
   ]);
-
-  // useEffect(()=>{},[e])
 
   const handleChange = (event) => {
     setState((prevState) => ({
@@ -44,9 +41,7 @@ export default function InvoiceForm() {
     }));
   };
 
-
   const handleItemEdit = (id, name, value) => {
-    // console.log("a;;")
     setItems((prevItems) =>
       prevItems.map((item) =>
         item.id === id ? { ...item, [name]: value } : item
@@ -54,25 +49,20 @@ export default function InvoiceForm() {
     );
   };
 
-
-
-  
   const handleAddItem = () => {
     const newItem = {
       id: Date.now().toString(),
       name: "",
       description: "",
       fees: 0.0,
-      duration: "1_month", 
+      duration: "1_month",
     };
     setItems((prevItems) => [...prevItems, newItem]);
   };
 
-
   const handleDeleteItem = (id) => {
     setItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
-
 
   const calculateTotal = () => {
     const newTotal = items.reduce(
@@ -86,15 +76,13 @@ export default function InvoiceForm() {
     }));
   };
 
-
   useEffect(() => {
     calculateTotal();
   }, [items]);
-console.log(e)
 
-const handleItesmEdit = () => {
-  console.log("Item edited");
-};
+  const handleItesmEdit = () => {
+    console.log("Item edited");
+  };
 
   return (
     <Form
@@ -104,8 +92,9 @@ const handleItesmEdit = () => {
       }}
     >
       <Row className="justify-content-center">
-        <Col md={8} lg={9}>
-          <Card className="d-flex p-4 my-3">
+        <Col xs={12} md={10} lg={8}>
+          <Card className="p-4 my-3">
+            {/* Logo Section */}
             <div
               className="d-flex justify-content-center"
               style={{
@@ -118,7 +107,8 @@ const handleItesmEdit = () => {
                 src={img1}
                 alt="Company Logo"
                 style={{
-                  width: "250px",
+                  width: "100%",
+                  maxWidth: "250px",
                   height: "auto",
                   borderRadius: "8px",
                 }}
@@ -126,8 +116,9 @@ const handleItesmEdit = () => {
             </div>
             <hr className="my-4" />
 
+            {/* Customer and Bill From Section */}
             <Row className="mb-4">
-              <Col>
+              <Col xs={12} md={6} className="mb-3 mb-md-0">
                 <Form.Label className="fw-bold">Customer Details:</Form.Label>
                 <Form.Control
                   placeholder="Enter Name"
@@ -151,27 +142,34 @@ const handleItesmEdit = () => {
                   required
                 />
               </Col>
-              <Col>
+              <Col xs={12} md={6}>
                 <Form.Label className="fw-bold">Bill From:</Form.Label>
                 <Form.Control value={state.billFrom} className="my-2" disabled />
-                <Form.Control value={state.billFromEmail} className="my-2" disabled />
-                <Form.Control value={state.billFromAddress} className="my-2" disabled />
+                <Form.Control
+                  value={state.billFromEmail}
+                  className="my-2"
+                  disabled
+                />
+                <Form.Control
+                  value={state.billFromAddress}
+                  className="my-2"
+                  disabled
+                />
               </Col>
             </Row>
 
+            {/* Invoice Items Section */}
             <Invoiceitem
-            setd={setd}
+              setd={setd}
               items={items}
               sete={sete}
               setItems={setItems}
               onItemizedItemEdit={handleItesmEdit}
-              // onRowAdd={handleAddItem}
-              // onRowDel={handleDeleteItem}
               currency={state.currency}
             />
-
           </Card>
 
+          {/* Generate Invoice Button */}
           <Button
             variant="primary"
             type="submit"
@@ -182,12 +180,14 @@ const handleItesmEdit = () => {
         </Col>
       </Row>
 
+      {/* Invoice Modal */}
       <InvoiceM
         showModal={state.isOpen}
-        closeModal={() => setState((prevState) => ({ ...prevState, isOpen: false }))}
+        closeModal={() =>
+          setState((prevState) => ({ ...prevState, isOpen: false }))
+        }
         info={state}
         items={items}
-        
         duration={e}
         d={d}
         e={e}

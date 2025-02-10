@@ -11,27 +11,17 @@ export default function Invoiceitem(props) {
     // Calculate total whenever items change
     const total = items.reduce((acc, item) => acc + (item.fees || 0), 0);
     setTotalAmount(total);
-    
     props.setd(total);
-    console.log(props)
-
-    // const durations = items.map((item) => item.duration);
-    // const descriptions = items.map((item) => item.description);
-
-    // props.setdu(durations);
-    // props.setdes(descriptions);
   }, [items]);
 
   const handleItemEdit = (id, name, value) => {
-    console.log("data")
     const updatedItems = items.map((item) =>
       item.id === id
         ? { ...item, [name]: name === "fees" ? parseFloat(value) : value }
         : item
     );
-    console.log("sds",updatedItems)
     setItems(updatedItems);
-    props.setItems(updatedItems)
+    props.setItems(updatedItems);
   };
 
   const itemTable = items.map((item) => (
@@ -43,24 +33,23 @@ export default function Invoiceitem(props) {
       currency={props.currency}
     />
   ));
-  console.log("props.item.fees", props);
-  // console.log("props.item.duration", items);
-  // console.log("props.item.description", items);
 
   return (
     <div>
-      <Table>
+      {/* Responsive Table */}
+      <Table responsive>
         <thead>
           <tr>
             <th>Course</th>
             <th>Duration</th>
             <th>Fees</th>
-            {/* <th className="text-center">Action</th> */}
           </tr>
         </thead>
         <tbody>{itemTable}</tbody>
       </Table>
-      <h4>
+
+      {/* Total Amount */}
+      <h4 className="mt-3">
         Total: {props.currency} {totalAmount.toFixed(2)}
       </h4>
     </div>
@@ -72,20 +61,9 @@ function ItemRow(props) {
     props.onDelEvent(props.item.id);
   };
 
-  const r=()=>{
-    console.log("a",props)
-    // if (props.onItemizedItemEdit) {
-    //   props.onItemizedItemEdit();  // Check if this function exists
-    // } else {
-    //   console.log("onItemizedItemEdit is not defined");
-    // }
-    console.log("susfubs")
-  }
-
-
-
   return (
     <tr>
+      {/* Course Name and Description */}
       <td style={{ width: "100%" }}>
         <Editablefield
           onItemizedItemEdit={props.onItemizedItemEdit}
@@ -108,6 +86,8 @@ function ItemRow(props) {
           }}
         />
       </td>
+
+      {/* Duration */}
       <td style={{ minWidth: "170px" }}>
         <Editablefield
           onItemizedItemEdit={props.onItemizedItemEdit}
@@ -117,13 +97,15 @@ function ItemRow(props) {
             value: props.item.duration ?? "1_month",
             id: props.item.id,
             options: [
-              { value: "3_months", label: "3 Months" },
-              { value: "1_month", label: "1 Month" },
-              { value: "14_days", label: "14 Days" },
+              { value: "3 Months", label: "3 Months" },
+              { value: "1 Month", label: "1 Month" },
+              { value: "14 Days", label: "14 Days" },
             ],
           }}
         />
       </td>
+
+      {/* Fees */}
       <td style={{ minWidth: "130px" }}>
         <Editablefield
           onItemizedItemEdit={props.onItemizedItemEdit}
@@ -139,10 +121,6 @@ function ItemRow(props) {
           }}
         />
       </td>
-      
     </tr>
   );
 }
-
-
-
