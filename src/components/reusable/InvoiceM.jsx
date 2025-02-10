@@ -59,7 +59,10 @@ export default function InvoiceM(props) {
           </Col>
           <Col md={4}>
             <div className="fw-bold">Date of Issue:</div>
-            <div>{new Date().toLocaleDateString()}</div>
+            <div>
+              {new Date().getDate()}/{new Date().getMonth() + 1}/
+              {new Date().getFullYear()}
+            </div>
           </Col>
         </Row>
 
