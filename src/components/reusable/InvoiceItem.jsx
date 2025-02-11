@@ -70,7 +70,7 @@ function ItemRow(props) {
           cellData={{
             type: "text",
             name: "name",
-            placeholder: "1 Month",
+            placeholder: " Course Details",
             id: props.item.id,
             value: props.item.name,
           }}

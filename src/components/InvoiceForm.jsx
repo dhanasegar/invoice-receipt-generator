@@ -27,8 +27,8 @@ export default function InvoiceForm() {
   const [items, setItems] = useState([
     {
       id: "0",
-      name: "name",
-      description: "Course Description",
+      name: "" ,
+      description: "",
       fees: 0.0,
       duration: "1 Month",
     },
